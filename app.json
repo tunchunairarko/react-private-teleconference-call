@@ -1,0 +1,7 @@
+{
+    "name": "react-private-teleconference-call",
+    "description": "Private teleconferencing app using react and webrtc. Extremely useful for telepresence robotics. Set your own unique IDs on the Express side of the app.",
+    "repository": "https://github.com/tunchunairarko/react-private-teleconference-call",
+    "logo": "https://raw.githubusercontent.com/nguymin4/react-videocall/production/client/src/assets/icon1.png",
+    "keywords": ["react", "express", "telepresence robot"]
+  }
