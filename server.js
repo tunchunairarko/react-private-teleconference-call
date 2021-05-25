@@ -6,6 +6,7 @@ const https = require('https');
 const sio = require('socket.io');
 const favicon = require('serve-favicon');
 const compression = require('compression');
+require("dotenv").config();
 
 const app = express(),
   options = { 
@@ -15,7 +16,7 @@ const app = express(),
   port = process.env.PORT || 3000,
   server = process.env.NODE_ENV === 'production' ?
     http.createServer(app).listen(port) :
-    https.createServer(options, app).listen(port),
+    https.createServer(options, app).listen(port, () => console.log(`The server has started on port: ${port}`)),
   io = sio(server);
 // compress all requests
 app.use(compression());
@@ -24,6 +25,8 @@ app.use((req, res) => res.sendFile(__dirname + '/dist/index.html'));
 app.use(favicon('./dist/favicon.ico'));
 // Switch off the default 'X-Powered-By: Express' header
 app.disable('x-powered-by');
+app.use("/api/rooms", require("./routes/TeleRouter"));
+
 io.sockets.on('connection', socket => {
   let room = '';
   // sending to all clients in the room (channel) except sender
