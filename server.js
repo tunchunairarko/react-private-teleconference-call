@@ -6,6 +6,8 @@ const https = require('https');
 const sio = require('socket.io');
 const favicon = require('serve-favicon');
 const compression = require('compression');
+var helmet = require('helmet')
+
 require("dotenv").config();
 
 const app = express(),
@@ -23,8 +25,9 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use((req, res) => res.sendFile(__dirname + '/dist/index.html'));
 app.use(favicon('./dist/favicon.ico'));
-// Switch off the default 'X-Powered-By: Express' header
-app.disable('x-powered-by');
+// // Switch off the default 'X-Powered-By: Express' header
+// app.disable('x-powered-by');
+app.use(helmet())
 app.use("/api/rooms", require("./routes/TeleRouter"));
 
 io.sockets.on('connection', socket => {
