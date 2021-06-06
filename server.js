@@ -29,12 +29,6 @@ app.use(favicon('./dist/favicon.ico'));
 app.disable('x-powered-by');
 app.use("/api/rooms", require("./routes/TeleRouter"));
 
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next()
-});
-
 
 io.sockets.on('connection', socket => {
   let room = '';
