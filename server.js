@@ -6,7 +6,8 @@ const https = require('https');
 const sio = require('socket.io');
 const favicon = require('serve-favicon');
 const compression = require('compression');
-var cors = require('cors')
+const createIframe = require("node-iframe");
+
 require("dotenv").config();
 
 const app = express(),
@@ -20,8 +21,7 @@ const app = express(),
     https.createServer(options, app).listen(port, () => console.log(`The server has started on port: ${port}`)),
   io = sio(server);
 // compress all requests
-app.use(cors())
-app.options('*', cors())
+
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use((req, res) => res.sendFile(__dirname + '/dist/index.html'));
@@ -29,6 +29,15 @@ app.use(favicon('./dist/favicon.ico'));
 // Switch off the default 'X-Powered-By: Express' header
 app.disable('x-powered-by');
 app.use("/api/rooms", require("./routes/TeleRouter"));
+app.use(createIframe);
+
+app.get("/iframe", (req, res) => {
+  res.createIframe({
+    url: req.query.url,
+    baseHref: req.query.baseHref, // optional: determine how to control link redirects,
+    config: { cors: { script: true } }, // optional: determine element cors or inlining #shape src/iframe.ts#L34
+  });
+});
 
 io.sockets.on('connection', socket => {
   let room = '';
