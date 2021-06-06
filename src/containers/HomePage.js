@@ -10,16 +10,28 @@ class HomePage extends Component {
     this.defaultRoomId = "9dd0ee98-d035-4e20-a95b-65c117b95a59";
     this.state = { roomId: this.defaultRoomId };
     this.handleChange = this.handleChange.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
   }
-  // componentDidMount() {
-  //   console.log(process.env.ROOM_ID)
-  //   // Axios.get('/api/rooms/roomid')
-  //   //   .then(res => {
-  //   //     console.log(res)
-  //   //     const rid = res.data.roomid;
-  //   //     this.setState({ roomId:rid });
-  //   //   })
-  // }
+  componentDidMount() {
+    window.addEventListener('message', this.handleMessage, false)
+    // console.log(process.env.ROOM_ID)
+    // // Axios.get('/api/rooms/roomid')
+    // //   .then(res => {
+    // //     console.log(res)
+    // //     const rid = res.data.roomid;
+    // //     this.setState({ roomId:rid });
+    // //   })
+  }
+  handleMessage(e){
+    if(e.data=="STARTCALL"){
+      var el = document.getElementById('gobackTelecareCall');
+      el.click()
+    }
+    else if(e.data=="HIDEJOINBUTTON"){
+      var el = document.getElementById('gobackTelecareCall');
+      el.attr("style","display:none")
+    }
+  }
   handleChange(e) {
     this.setState({ roomId: e.target.value });
   }
