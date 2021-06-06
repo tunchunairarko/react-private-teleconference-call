@@ -21,6 +21,7 @@ const app = express(),
   io = sio(server);
 // compress all requests
 app.use(cors())
+app.options('*', cors())
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use((req, res) => res.sendFile(__dirname + '/dist/index.html'));
