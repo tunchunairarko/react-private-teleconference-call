@@ -20,8 +20,7 @@ const app = express(),
     https.createServer(options, app).listen(port, () => console.log(`The server has started on port: ${port}`)),
   io = sio(server);
 // compress all requests
-app.use(cors())
-app.options('*', cors())
+
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use((req, res) => res.sendFile(__dirname + '/dist/index.html'));
@@ -65,3 +64,5 @@ io.sockets.on('connection', socket => {
     socket.leave(room);});
 });
 
+app.use(cors())
+app.options('*', cors())
