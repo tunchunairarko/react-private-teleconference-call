@@ -7,7 +7,11 @@ import { render } from 'react-dom';
 class Communication extends React.Component{
   constructor(props){
     super(props)
+    
+  }
+  componentDidMount(){
     window.addEventListener('message', handleMessage, false)
+    
     const handleMessage =(e)=>{
       // var el = document.getElementById('gobackTelecareCall');
       if(e.data=="STOPCALL"){
@@ -23,7 +27,6 @@ class Communication extends React.Component{
       // }
     }
   }
-  
   
 
 render(){
