@@ -7,25 +7,24 @@ import { render } from 'react-dom';
 class Communication extends React.Component{
   constructor(props){
     super(props)
-    
+    this.handleMessage = this.handleMessage.bind(this);
   }
   componentDidMount(){
     window.addEventListener('message', handleMessage, false)
-    
-    const handleMessage =(e)=>{
-      // var el = document.getElementById('gobackTelecareCall');
-      if(e.data=="STOPCALL"){
-        var el = document.getElementById('gobackTelecareCall');
-        el.click()
-      }
-      // Check origin
-      // if ( e.origin === 'http://www.example.com' ) {
-      //     // Retrieve data sent in postMessage
-      //     el.innerHTML = e.data;
-      //     // Send reply to source of message
-      //     e.source.postMessage('Message received', e.origin);
-      // }
+  }
+  handleMessage(e){
+    // var el = document.getElementById('gobackTelecareCall');
+    if(e.data=="STOPCALL"){
+      var el = document.getElementById('gobackTelecareCall');
+      el.click()
     }
+    // Check origin
+    // if ( e.origin === 'http://www.example.com' ) {
+    //     // Retrieve data sent in postMessage
+    //     el.innerHTML = e.data;
+    //     // Send reply to source of message
+    //     e.source.postMessage('Message received', e.origin);
+    // }
   }
   
 
