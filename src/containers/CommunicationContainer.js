@@ -20,6 +20,7 @@ class CommunicationContainer extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.toggleVideo = this.toggleVideo.bind(this);
     this.toggleAudio = this.toggleAudio.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
     this.send = this.send.bind(this);
   }
   hideAuth() {
@@ -29,6 +30,7 @@ class CommunicationContainer extends React.Component {
     this.props.media.setState({bridge: 'full'});
   }
   componentDidMount() {
+    window.addEventListener('message', handleMessage, false)
     const socket = this.props.socket;
     this.setState({video: this.props.video, audio: this.props.audio});
 
@@ -49,6 +51,20 @@ class CommunicationContainer extends React.Component {
           this.localStream.getVideoTracks()[0].enabled = this.state.video;
           this.localStream.getAudioTracks()[0].enabled = this.state.audio;
         });
+  }
+  handleMessage(e){
+    // var el = document.getElementById('gobackTelecareCall');
+    if(e.data=="STOPCALL"){
+      var el = document.getElementById('gobackTelecareCall');
+      el.click()
+    }
+    // Check origin
+    // if ( e.origin === 'http://www.example.com' ) {
+    //     // Retrieve data sent in postMessage
+    //     el.innerHTML = e.data;
+    //     // Send reply to source of message
+    //     e.source.postMessage('Message received', e.origin);
+    // }
   }
   handleInput(e) {
     this.setState({[e.target.dataset.ref]: e.target.value});
