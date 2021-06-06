@@ -30,7 +30,7 @@ class CommunicationContainer extends React.Component {
     this.props.media.setState({bridge: 'full'});
   }
   componentDidMount() {
-    window.addEventListener('message', handleMessage, false)
+    window.addEventListener('message', this.handleMessage, false)
     const socket = this.props.socket;
     this.setState({video: this.props.video, audio: this.props.audio});
 
@@ -53,18 +53,10 @@ class CommunicationContainer extends React.Component {
         });
   }
   handleMessage(e){
-    // var el = document.getElementById('gobackTelecareCall');
     if(e.data=="STOPCALL"){
       var el = document.getElementById('gobackTelecareCall');
       el.click()
     }
-    // Check origin
-    // if ( e.origin === 'http://www.example.com' ) {
-    //     // Retrieve data sent in postMessage
-    //     el.innerHTML = e.data;
-    //     // Send reply to source of message
-    //     e.source.postMessage('Message received', e.origin);
-    // }
   }
   handleInput(e) {
     this.setState({[e.target.dataset.ref]: e.target.value});
