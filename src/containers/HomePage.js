@@ -24,11 +24,11 @@ class HomePage extends Component {
   }
   handleMessage(e){
     if(e.data=="STARTCALL"){
-      var el = document.getElementById('gobackTelecareCall');
+      var el = document.getElementById('robotUserCallButton');
       el.click()
     }
     else if(e.data=="HIDEJOINBUTTON"){
-      var el = document.getElementById('gobackTelecareCall');
+      var el = document.getElementById('robotUserCallButton');
       el.attr("style","display:none")
     }
   }
