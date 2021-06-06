@@ -6,7 +6,7 @@ import ToggleFullScreen from './ToggleFullScreen';
 const Communication = props =>
   <div className="auth">
     <div className="media-controls">
-      <Link className="call-exit-button" to="/">
+      <Link className="call-exit-button" to="/" id="gobackTelecareCall">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"  className="svg">
           <path d="M30 16.5h-18.26l8.38-8.38-2.12-2.12-12 12 12 12 2.12-2.12-8.38-8.38h18.26v-3z" fill="white"/>
         </svg>
