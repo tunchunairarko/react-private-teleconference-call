@@ -29,6 +29,13 @@ app.use(favicon('./dist/favicon.ico'));
 app.disable('x-powered-by');
 app.use("/api/rooms", require("./routes/TeleRouter"));
 
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next()
+});
+
+
 io.sockets.on('connection', socket => {
   let room = '';
   // sending to all clients in the room (channel) except sender
@@ -64,5 +71,5 @@ io.sockets.on('connection', socket => {
     socket.leave(room);});
 });
 
-app.use(cors())
-app.options('*', cors())
+// app.use(cors())
+// app.options('*', cors())
