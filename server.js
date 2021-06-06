@@ -63,5 +63,8 @@ io.sockets.on('connection', socket => {
     // sending to all clients in the room (channel) except sender
     socket.broadcast.to(room).emit('hangup');
     socket.leave(room);});
+  socket.on('destroy', () => {
+    // sending to all clients in the room (channel) except sender
+    io.in(room).emit('hangup');});
 });
 
