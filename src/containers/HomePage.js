@@ -14,10 +14,11 @@ class HomePage extends Component {
     this.handleMessage = this.handleMessage.bind(this);
     this.socket = io.connect();
     this.socket.on('res_room_size', (sizedata) =>
-      parent.postMessage(JSON.stringify({"roomSize":sizedata})));
+      localStorage.setItem("roomSize",sizedata));
   }
   componentDidMount() {
     window.addEventListener('message', this.handleMessage, false)
+    this.socket.emit("roomsize",this.defaultRoomId)
     // console.log(process.env.ROOM_ID)
     // // Axios.get('/api/rooms/roomid')
     // //   .then(res => {
