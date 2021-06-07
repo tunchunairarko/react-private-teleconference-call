@@ -48,6 +48,18 @@ io.sockets.on('connection', socket => {
       socket.emit('full', room);
     }
   });
+  socket.on('roomsize', (roomid) => {
+    const sr = io.sockets.adapter.rooms[roomid];
+    var sizedata=0
+    if (sr === undefined) {
+      // no room with such name is found so create it
+      sizedata=0
+      socket.emit('res_room_size',sizedata);
+    } else { // max two clients
+      sizedata=sr.length
+      socket.emit('res_room_size', sizedata);
+    }
+  });
   socket.on('auth', data => {
     data.sid = socket.id;
     // sending to all clients in the room (channel) except sender

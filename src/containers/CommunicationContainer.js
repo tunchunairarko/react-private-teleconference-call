@@ -52,6 +52,9 @@ class CommunicationContainer extends React.Component {
           this.localStream.getAudioTracks()[0].enabled = this.state.audio;
         });
   }
+  componentWillUnmount(){
+    window.removeEventListener('message', this.handleMessage, false)
+  }
   handleMessage(e){
     if(e.data=="STOPCALL"){
       var el = document.getElementById('gobackTelecareCall');

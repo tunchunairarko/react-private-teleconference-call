@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types';
 import Home from '../components/Home';
 import Axios from "axios";
+import io from 'socket.io-client'
 
 class HomePage extends Component {
   constructor(props) {
@@ -11,6 +12,9 @@ class HomePage extends Component {
     this.state = { roomId: this.defaultRoomId };
     this.handleChange = this.handleChange.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
+    this.socket = io.connect();
+    this.socket.on('res_room_size', (sizedata) =>
+      parent.postMessage(JSON.stringify({"roomSize":sizedata})));
   }
   componentDidMount() {
     window.addEventListener('message', this.handleMessage, false)
@@ -22,6 +26,9 @@ class HomePage extends Component {
     // //     this.setState({ roomId:rid });
     // //   })
   }
+  componentWillUnmount(){
+    window.removeEventListener('message', this.handleMessage, false)
+  }
   handleMessage(e){
     if(e.data=="STARTCALL"){
       var el = document.getElementById('robotUserCallButton');
@@ -30,6 +37,9 @@ class HomePage extends Component {
     else if(e.data=="HIDEJOINBUTTON"){
       var el = document.getElementById('robotUserCallButton');
       el.attr("style","display:none")
+    }
+    else if(e.data=="CHECKROOMSIZE"){
+      this.socket.emit("roomsize",this.defaultRoomId)
     }
   }
   handleChange(e) {
