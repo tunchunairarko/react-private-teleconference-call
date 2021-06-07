@@ -13,8 +13,12 @@ class HomePage extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.socket = io.connect();
-    this.socket.on('res_room_size', (sizedata) =>
-      localStorage.setItem("roomSize",sizedata));
+    this.socket.on('res_room_size', (sizedata) => {
+      localStorage.setItem("roomSize",sizedata);
+      parent.postMessage(JSON.stringify({"roomsize":sizedata}))
+    })
+    
+      
   }
   componentDidMount() {
     window.addEventListener('message', this.handleMessage, false)
