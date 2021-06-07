@@ -15,7 +15,7 @@ class HomePage extends Component {
     this.socket = io.connect();
     this.socket.on('res_room_size', (sizedata) => {
       localStorage.setItem("roomSize",sizedata);
-      parent.postMessage(JSON.stringify({"roomsize":sizedata}))
+      parent.postMessage(JSON.stringify({"roomsize":sizedata}),"*")
     })
     
       
