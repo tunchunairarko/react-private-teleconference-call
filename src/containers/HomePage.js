@@ -36,6 +36,7 @@ class HomePage extends Component {
   }
   handleMessage(e){
     if(e.data=="STARTCALL"){
+      console.log("gaitain")
       var el = document.getElementById('robotUserCallButton');
       el.click()
     }
