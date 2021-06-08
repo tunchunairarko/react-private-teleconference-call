@@ -136,7 +136,13 @@ class MediaBridge extends Component {
   render(){
     return (
       <div className={`media-bridge ${this.state.bridge}`}>
-        <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+        {
+          this.state.user==='host'? (<video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>):
+          (
+            <img className="remote-video" src="https://robotapi.isensetune.com/video_feed" />
+          )
+        }
+        
         <video className="local-video" ref={(ref) => this.localVideo = ref} autoPlay muted></video>
       </div>
     );
