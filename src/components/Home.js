@@ -17,9 +17,15 @@ class Home extends React.Component {
           <p>Your unique room ID.</p>
           <input type="text" name="room" value={this.props.roomId} onChange={this.props.handleChange} pattern="^\w+$" maxLength="10" required autoFocus title="Room name should only contain letters or numbers." />
 
-          <center>
-            <Link className="primary-button" id="robotUserCallButton" to={'/r/' + this.props.roomId}>Join</Link>
-          </center>
+          {
+            this.props.shallStartCall?(
+              <center>
+                <Link className="primary-button" id="robotUserCallButton" to={'/r/' + this.props.roomId}>Join</Link>
+              </center>
+            ):(
+              <button className="primary-button" disabled>Connection off</button>
+            )
+          }
 
           {/* <Link className="primary-button" id="remoteUserCallButton" to={ '/r/' + this.props.roomId }>Join telepresently</Link> */}
           {this.props.rooms.length !== 0 && <div>Recently used rooms:</div>}
@@ -35,6 +41,7 @@ Home.propTypes = {
   handleChange: PropTypes.func.isRequired,
   defaultRoomId: PropTypes.string.isRequired,
   roomId: PropTypes.string.isRequired,
+  shallStartCall: PropTypes.bool.isRequired,
   rooms: PropTypes.array.isRequired
 };
 

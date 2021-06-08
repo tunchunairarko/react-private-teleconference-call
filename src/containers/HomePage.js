@@ -12,8 +12,11 @@ class HomePage extends Component {
     this.state = { roomId: this.defaultRoomId };
     this.handleChange = this.handleChange.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
+    this.shallStartCall=true
+    this.roomsize = "";
     this.socket = io.connect();
     this.socket.on('res_room_size', (sizedata) => {
+      this.roomsize = sizedata;
       localStorage.setItem("roomSize",sizedata);
       parent.postMessage(JSON.stringify({"roomsize":sizedata}),"*")
     })
@@ -47,6 +50,9 @@ class HomePage extends Component {
     else if(e.data=="CHECKROOMSIZE"){
       this.socket.emit("roomsize",this.defaultRoomId)
     }
+    else if(e.data=="DONTSTARTCALL"){
+      this.shallStartCall=false
+    }
   }
   handleChange(e) {
     this.setState({ roomId: e.target.value });
@@ -57,6 +63,7 @@ class HomePage extends Component {
         defaultRoomId={this.defaultRoomId}
         roomId={this.state.roomId}
         handleChange={this.handleChange}
+        shallStartCall={this.shallStartCall}
       />
     );
   }
