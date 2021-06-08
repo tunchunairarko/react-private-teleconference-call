@@ -114,7 +114,7 @@ input[type=text] {
     color: #4285F4;
     margin: 1ex 1em;
 }
-.remote-video {
+.remote-video, .remote-image {
     display: block;
     max-height: 100%;
     max-width: 100%;
@@ -135,7 +135,8 @@ input[type=text] {
 }
 .media-bridge,
 .local-video,
-.remote-video {
+.remote-video,
+.remote-image {
     position: absolute;
     height: 100%;
     width: 100%;

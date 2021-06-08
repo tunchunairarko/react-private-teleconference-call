@@ -139,7 +139,7 @@ class MediaBridge extends Component {
         {
           this.state.user==='host'? (<video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>):
           (
-            <img className="remote-video" src="https://robotapi.isensetune.com/video_feed" />
+            <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
           )
         }
         
