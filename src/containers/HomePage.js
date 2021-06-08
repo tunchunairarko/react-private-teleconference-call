@@ -51,6 +51,7 @@ class HomePage extends Component {
       this.socket.emit("roomsize",this.defaultRoomId)
     }
     else if(e.data=="DONTSTARTCALL"){
+      console.log("received dontstartcall")
       this.shallStartCall=false
     }
   }
