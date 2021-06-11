@@ -109,11 +109,12 @@ class MediaBridge extends Component {
     };
     // when the other side added a media stream, show it on screen
     this.pc.onaddstream = e => {
-        console.log('onaddstream', e) 
-        if(this.state.user==="host"){
-          this.remoteStream = e.stream;
-          this.remoteVideo.srcObject = this.remoteStream = e.stream;
-        }
+        console.log('onaddstream', e)
+        this.remoteStream = e.stream;
+        this.remoteVideo.srcObject = this.remoteStream = e.stream; 
+        // if(this.state.user==="host"){          
+        //   this.remoteVideo.srcObject = this.remoteStream = e.stream;
+        // }
         this.setState({bridge: 'established'});
     };
     this.pc.ondatachannel = e => {
@@ -141,7 +142,11 @@ class MediaBridge extends Component {
         {
           this.state.user==='host'? (<video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>):
           (
-            <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
+            <div>
+              <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+              <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
+            </div>
+            
           )
         }
         
