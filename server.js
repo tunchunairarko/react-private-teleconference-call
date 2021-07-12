@@ -6,6 +6,7 @@ const https = require('https');
 const sio = require('socket.io');
 const favicon = require('serve-favicon');
 const compression = require('compression');
+var secure = require('express-force-https');
 var cors = require('cors')
 require("dotenv").config();
 
@@ -20,7 +21,7 @@ const app = express(),
     https.createServer(options, app).listen(port, () => console.log(`The server has started on port: ${port}`)),
   io = sio(server);
 // compress all requests
-
+app.use(secure);
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use((req, res) => res.sendFile(__dirname + '/dist/index.html'));
