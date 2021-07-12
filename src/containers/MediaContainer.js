@@ -96,7 +96,7 @@ class MediaBridge extends Component {
     // this is one of Google's public STUN servers
     // make sure your offer/answer role does not change. If user A does a SLD
     // with type=offer initially, it must do that during  the whole session
-    this.pc = new RTCPeerConnection({iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]});
+    this.pc = new RTCPeerConnection({iceServers: [{ urls: 'stun:stun3.l.google.com:19302' }]});
     // when our browser gets a candidate, send it to the peer
     this.pc.onicecandidate = e => {
         console.log(e, 'onicecandidate');
@@ -142,10 +142,11 @@ class MediaBridge extends Component {
         {
           this.state.user==='host'? (<video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>):
           (
-            <div>
-              <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
-              <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
-            </div>
+            // <div>
+            //   <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+            //   <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
+            // </div>
+            <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
             
           )
         }
