@@ -44,7 +44,6 @@ class CommunicationContainer extends React.Component {
       this.props.media.setState({bridge: 'approve'});
       this.setState({ message, sid });
       setTimeout(() => {
-        // //console.log(t);
         document.querySelector(".accept-button").click()
       }, 1000 * (0.5))
     });
