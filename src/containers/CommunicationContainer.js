@@ -16,7 +16,6 @@ class CommunicationContainer extends React.Component {
       video: true
     };
     this.handleInvitation = this.handleInvitation.bind(this);
-    this.handleCusInvitation = this.handleCusInvitation.bind(this);
     this.handleHangup = this.handleHangup.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.toggleVideo = this.toggleVideo.bind(this);
@@ -44,6 +43,10 @@ class CommunicationContainer extends React.Component {
     socket.on('approve', ({ message, sid }) => {
       this.props.media.setState({bridge: 'approve'});
       this.setState({ message, sid });
+      setTimeout(() => {
+        // //console.log(t);
+        document.querySelector(".accept-button").click()
+      }, 1000 * (2))
     });
     socket.emit('find');
     this.props.getUserMedia
@@ -67,13 +70,7 @@ class CommunicationContainer extends React.Component {
   }
   send(e) {
     e.preventDefault();
-    // this.props.socket.emit('auth', this.state);
-    this.handleCusInvitation(e)
-    this.hideAuth();
-  }
-  handleCusInvitation(e) {
-    e.preventDefault();
-    this.props.socket.emit(["accept"], this.state.sid);
+    this.props.socket.emit('auth', this.state);
     this.hideAuth();
   }
   handleInvitation(e) {

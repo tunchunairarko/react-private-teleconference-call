@@ -45,8 +45,8 @@ const Communication = props =>
     <div className="grant-access">
       <p>A peer has sent you a message to join the room:</p>
       <div>{props.message}</div>
-      <button onClick={props.handleInvitation} data-ref="reject" className="primary-button">Reject</button>
-      <button onClick={props.handleInvitation} data-ref="accept" className="primary-button">Accept</button>
+      <button onClick={props.handleInvitation} data-ref="reject" className="primary-button reject-button">Reject</button>
+      <button onClick={props.handleInvitation} data-ref="accept" className="primary-button accept-button">Accept</button>
     </div>
     <div className="room-occupied">
       <p>Please, try another room!</p>
