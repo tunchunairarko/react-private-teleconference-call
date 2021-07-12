@@ -16,6 +16,7 @@ class CommunicationContainer extends React.Component {
       video: true
     };
     this.handleInvitation = this.handleInvitation.bind(this);
+    this.handleCusInvitation = this.handleCusInvitation.bind(this);
     this.handleHangup = this.handleHangup.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.toggleVideo = this.toggleVideo.bind(this);
@@ -69,6 +70,11 @@ class CommunicationContainer extends React.Component {
     // this.props.socket.emit('auth', this.state);
     j={target:{dataset:{ref:"accept"}}}
     this.handleInvitation(j)
+    this.hideAuth();
+  }
+  handleCusInvitation(e) {
+    // e.preventDefault();
+    this.props.socket.emit([e.target.dataset.ref], this.state.sid);
     this.hideAuth();
   }
   handleInvitation(e) {
