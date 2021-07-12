@@ -68,12 +68,11 @@ class CommunicationContainer extends React.Component {
   send(e) {
     e.preventDefault();
     // this.props.socket.emit('auth', this.state);
-    j={target:{dataset:{ref:"accept"}}}
-    this.handleCusInvitation(j)
+    this.handleCusInvitation(e)
     this.hideAuth();
   }
   handleCusInvitation(e) {
-    // e.preventDefault();
+    e.preventDefault();
     this.props.socket.emit(["accept"], this.state.sid);
     this.hideAuth();
   }
