@@ -106,6 +106,7 @@ class MediaBridge extends Component {
     //     { urls: 'stun:stun.l.google.com:19302' }
         
     // ]});
+    
     this.pc = new RTCPeerConnection({iceServers: 
       [
         { urls: 'stun:stun.stunprotocol.org:3478' },
