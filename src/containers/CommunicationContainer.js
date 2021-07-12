@@ -46,7 +46,7 @@ class CommunicationContainer extends React.Component {
       setTimeout(() => {
         // //console.log(t);
         document.querySelector(".accept-button").click()
-      }, 1000 * (2))
+      }, 1000 * (1))
     });
     socket.emit('find');
     this.props.getUserMedia

@@ -117,8 +117,8 @@ class MediaBridge extends Component {
         }
     };
     // when the other side added a media stream, show it on screen
-    this.pc.onaddstream = e => {
-        console.log('onaddstream', e)
+    this.pc.onaddtrack = e => {
+        console.log('onaddtrack', e)
         this.remoteStream = e.stream;
         this.remoteVideo.srcObject = this.remoteStream = e.stream; 
         // if(this.state.user==="host"){          
