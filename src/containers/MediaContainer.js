@@ -109,14 +109,7 @@ class MediaBridge extends Component {
     
     this.pc = new RTCPeerConnection({iceServers: 
       [
-        { urls: 'stun:stun.stunprotocol.org:3478' },
-        {
-          urls: ['turn:192.158.29.39:3478?transport=udp','turn:192.158.29.39:3478?transport=tcp'],
-          credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-          username: '28224511:1379330808'
-        },
-        { urls: 'stun:stun.l.google.com:19302' }
-        
+        { urls: 'stun:stun.stunprotocol.org:3478' }        
     ]});
     // when our browser gets a candidate, send it to the peer
     this.pc.onicecandidate = e => {
@@ -172,11 +165,11 @@ class MediaBridge extends Component {
         {
           this.state.user==='host'? (<video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>):
           (
-            // <div>
-            //   <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
-            //   <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
-            // </div>
-            <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+            <div>
+              <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+              <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
+            </div>
+            // <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
           )
         }
         
