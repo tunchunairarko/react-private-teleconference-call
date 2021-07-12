@@ -116,16 +116,25 @@ class MediaBridge extends Component {
             });
         }
     };
+    this.pc.ontrack = e => {
+      console.log('ontrack', e)
+      this.remoteStream = e.streams[0];
+      this.remoteVideo.srcObject = this.remoteStream = e.streams[0]; 
+      // if(this.state.user==="host"){          
+      //   this.remoteVideo.srcObject = this.remoteStream = e.stream;
+      // }
+      this.setState({bridge: 'established'});
+  };
     // when the other side added a media stream, show it on screen
-    this.pc.onaddtrack = e => {
-        console.log('onaddtrack', e)
-        this.remoteStream = e.stream;
-        this.remoteVideo.srcObject = this.remoteStream = e.stream; 
-        // if(this.state.user==="host"){          
-        //   this.remoteVideo.srcObject = this.remoteStream = e.stream;
-        // }
-        this.setState({bridge: 'established'});
-    };
+    // this.pc.onaddstream = e => {
+    //     console.log('onaddstream', e)
+    //     this.remoteStream = e.stream;
+    //     this.remoteVideo.srcObject = this.remoteStream = e.stream; 
+    //     // if(this.state.user==="host"){          
+    //     //   this.remoteVideo.srcObject = this.remoteStream = e.stream;
+    //     // }
+    //     this.setState({bridge: 'established'});
+    // };
     this.pc.ondatachannel = e => {
         // data channel
         this.dc = e.channel;
