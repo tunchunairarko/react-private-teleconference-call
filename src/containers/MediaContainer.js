@@ -29,6 +29,11 @@ class MediaBridge extends Component {
     this.props.media(null);
     if (this.localStream !== undefined) {
       this.localStream.getVideoTracks()[0].stop();
+      this.localStream.getAudioTracks()[0].stop();
+    }
+    if (this.remoteStream !== undefined) {
+      this.remoteStream.getVideoTracks()[0].stop();
+      this.remoteStream.getAudioTracks()[0].stop();
     }
     this.props.socket.emit('leave');
   }
@@ -62,7 +67,16 @@ class MediaBridge extends Component {
           console.log('received message over data channel:' + msg);
       };
       this.dc.onclose = () => {
-        this.remoteStream.getVideoTracks()[0].stop();
+        if (this.remoteStream !== undefined) {
+          this.remoteStream.getVideoTracks()[0].stop();
+          this.remoteStream.getAudioTracks()[0].stop();
+        }
+        
+        // if (this.localStream !== undefined) {
+        //   this.localStream.getVideoTracks()[0].stop();
+        //   this.localStream.getAudioTracks()[0].stop();
+        // }
+        
         console.log('The Data Channel is Closed');
       };
   }
