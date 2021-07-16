@@ -140,7 +140,12 @@ input[type=text] {
     position: absolute;
     height: 100%;
     width: 100%;
+}
+.remote-video{
     z-index: 10;
+}
+.remote-image{
+    z-index: 20;
 }
 .auth {
     position: absolute;

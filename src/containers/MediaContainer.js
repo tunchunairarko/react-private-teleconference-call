@@ -180,12 +180,12 @@ class MediaBridge extends Component {
         {
           this.state.user==='host'? (<video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>):
           (
-            // <div>
-            //   {/* <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video> */}
-            //   <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
-            //   <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
-            // </div>
-            <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+            <div>
+              {/* <video style={{display:"none"}} className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video> */}
+              <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
+              <img className="remote-image" src="https://robotapi.isensetune.com/video_feed" />
+            </div>
+            // <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
           )
         }
         
