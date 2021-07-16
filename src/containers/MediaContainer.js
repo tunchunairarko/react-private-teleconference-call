@@ -187,6 +187,7 @@ class MediaBridge extends Component {
             </div>
             // <video className="remote-video" ref={(ref) => this.remoteVideo = ref} autoPlay></video>
           )
+          
         }
         
         <video className="local-video" ref={(ref) => this.localVideo = ref} autoPlay muted></video>
