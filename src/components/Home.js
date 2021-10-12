@@ -14,8 +14,8 @@ class Home extends React.Component {
       <div className="home">
         <div>
           <h1 itemProp="headline">HWU Telepresence Room</h1>
-          <p>Your unique room ID.</p>
-          <input type="text" name="room" value={this.props.roomId} onChange={this.props.handleChange} pattern="^\w+$" maxLength="10" required autoFocus title="Room name should only contain letters or numbers." />
+          <p>Your unique room ID (Just click join)</p>
+          <input type="text" name="room" value={this.props.roomId} onChange={this.props.handleChange} pattern="^\w+$" maxLength="10" required autoFocus title="Room name should only contain letters or numbers." disabled/>
 
           {
             this.props.shallStartCall?(
